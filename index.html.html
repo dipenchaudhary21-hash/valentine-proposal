@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Urvashi ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      z-index: 2;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      color: #e63946;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background: #2ec4b6;
+      color: white;
+    }
+
+    #no {
+      background: #e63946;
+      color: white;
+      position: absolute;
+      left: 140px;
+    }
+
+    .heart, .flower {
+      position: absolute;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    .heart {
+      color: red;
+      font-size: 24px;
+    }
+
+    .flower {
+      font-size: 22px;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Urvashi, will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">YES 💕</button>
+      <button id="no" onclick="moveNo()">NO 💔</button>
+    </div>
+  </div>
+
+  <script>
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          height:100vh;
+          background:linear-gradient(135deg,#ff758c,#ff7eb3);
+          text-align:center;
+          font-family:'Comic Sans MS', cursive;
+        ">
+          <h1 style="color:white;font-size:3rem;">
+            YAYYYY URVASHI 💖🌹<br>
+            You made me the happiest! 😍
+          </h1>
+        </div>
+      `;
+    }
+
+    function createFloating() {
+      const el = document.createElement("div");
+      el.className = Math.random() > 0.5 ? "heart" : "flower";
+      el.innerHTML = el.className === "heart" ? "❤️" : "🌸";
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = (Math.random() * 3 + 4) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 7000);
+    }
+
+    setInterval(createFloating, 300);
+  </script>
+
+</body>
+</html>
